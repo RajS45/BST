@@ -25,6 +25,7 @@ Binary Search Tree
 📘 Example
 Imagine inserting numbers in this order: 8, 3, 10, 1, 6, 14, 4, 7, 13.
 The BST looks like:
+
         8
        / \
       3   10
