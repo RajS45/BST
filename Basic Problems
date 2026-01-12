@@ -186,3 +186,34 @@ class Solution {
         return root;
     }
 }
+6.Two Sum in BST.
+class Solution {
+    public boolean twoSumBST(TreeNode root, int k) {
+        List<Integer> sorted_List = inorderTraversal(root);
+        int i = 0, j = sorted_List.size() - 1;
+        while (i < j) {
+            int current_num = sorted_List.get(i) + sorted_List.get(j);
+            if (current_num == k) {
+                return true;
+            } else if (current_num < k) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return false;
+    }
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ele = new ArrayList<>();
+        inorderHelper(root, ele);
+        return ele;
+    }
+    public void inorderHelper(TreeNode node, List<Integer> ele) {
+        if (node == null) {
+            return;
+        }
+        inorderHelper(node.left, ele);
+        ele.add(node.data);
+        inorderHelper(node.right, ele);
+    }
+}
