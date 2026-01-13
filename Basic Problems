@@ -217,3 +217,25 @@ class Solution {
         inorderHelper(node.right, ele);
     }
 }
+7.Correct BST with two nodes swapped.
+class Solution {
+    List<Integer> inorderValues = new ArrayList<>();
+    int index = 0;
+    public void recoverTree(TreeNode root) {
+        collectInorder(root);
+        Collections.sort(inorderValues);
+        restoreInorder(root);
+    }
+    private void collectInorder(TreeNode root) {
+        if (root == null) return;
+        collectInorder(root.left);
+        inorderValues.add(root.data);
+        collectInorder(root.right);
+    }
+    private void restoreInorder(TreeNode root) {
+        if (root == null) return;
+        restoreInorder(root.left);
+        root.data = inorderValues.get(index++);
+        restoreInorder(root.right);
+    }
+}
