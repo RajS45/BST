@@ -239,3 +239,22 @@ class Solution {
         restoreInorder(root.right);
     }
 }
+8.Largest BST in Binary Tree.
+class Solution {
+    public int largestBST(TreeNode root) {
+        if (root == null) return 0;
+        if (isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+            return getSize(root);
+        }
+        return Math.max(largestBST(root.left), largestBST(root.right));
+    }
+    private boolean isBST(TreeNode root, int min, int max) {
+        if (root == null) return true;
+        if (root.data <= min || root.data >= max) return false;
+        return isBST(root.left, min, root.data) && isBST(root.right, root.data, max);
+    }
+    private int getSize(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + getSize(root.left) + getSize(root.right);
+    }
+}
